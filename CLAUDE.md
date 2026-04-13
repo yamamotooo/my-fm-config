@@ -1,9 +1,8 @@
-# FM Sort DnD — Claude Code 引き継ぎコンテキスト
+# FileMaker コンフィグ画面　アドオン
 
 ## プロジェクト概要
 
-FileMaker Pro 向けドラッグ＆ドロップ並び替えアドオン **my-fm-sortablejs** の
-コンフィグ画面（WebViewer）を Vite + Vue 3 + JavaScript で実装する。
+FileMaker Pro 向けアドオンのコンフィグ画面（WebViewer）を Vite + Vue 3 + JavaScript で実装する。
 
 ---
 
@@ -25,8 +24,6 @@ src/
   main.js
   style.css
 ```
-
-`src/components/` は不要（Vite テンプレートの残骸）。
 
 ---
 
