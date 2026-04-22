@@ -73,6 +73,23 @@
                     <option v-for="f in activeFields" :key="f" :value="f">{{ f }}</option>
                   </select>
 
+                  <!-- select -->
+                  <select v-else-if="fieldDef.type === 'select'"
+                    :value="fieldDef.value"
+                    @change="e => handleChange(fieldDef, e.target.value)"
+                  >
+                    <option value="">{{ fieldDef.required ? '-- 選択してください --' : '-- なし --' }}</option>
+                    <option v-for="opt in fieldDef.options" :key="opt.value" :value="opt.value">{{ opt.label }}</option>
+                  </select>
+
+                  <!-- text -->
+                  <input v-else-if="fieldDef.type === 'text'"
+                    type="text"
+                    :value="fieldDef.value ?? ''"
+                    :placeholder="fieldDef.placeholder ?? ''"
+                    @input="e => handleChange(fieldDef, e.target.value)"
+                  />
+
                   <!-- number -->
                   <input v-else-if="fieldDef.type === 'number'"
                     type="number" min="1"
@@ -256,7 +273,7 @@ function buildPayload() {
 }
 
 function callback(action) {
-  execute('mfs-Callback', JSON.stringify({ action, data: buildPayload() }), 0)
+  execute('mfc-Callback', JSON.stringify({ action, data: buildPayload() }), 0)
 }
 
 function saveConfig() {

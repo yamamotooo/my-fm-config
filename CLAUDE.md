@@ -35,7 +35,7 @@ src/
 ① FileMaker が WV を表示
 ② FileMaker が 0.1秒後に fm_setConfig で統合データを渡す
 ③ ユーザーが設定して保存 or キャンセル
-   → FileMaker.PerformScriptWithOption("mfs-Callback", json, "0")
+   → FileMaker.PerformScriptWithOption("mfc-Callback", json, "0")
 ```
 
 ### Vue 側で公開するグローバル関数
@@ -75,7 +75,7 @@ window.fm_setConfig(json)
 
 ```javascript
 // execute() ラッパー経由で呼び出す
-execute('mfs-Callback', JSON.stringify({
+execute('mfc-Callback', JSON.stringify({
   action: '保存' | 'キャンセル',
   data: {
     fieldData: {
@@ -87,7 +87,7 @@ execute('mfs-Callback', JSON.stringify({
 }), 0)
 ```
 
-### FileMaker 側での処理（mfs-Callback）
+### FileMaker 側での処理（mfc-Callback）
 
 ```
 action = "保存"    → data.fieldData.ConfigJSON を ConfigJSON フィールドに保存
@@ -174,6 +174,8 @@ execute(scriptName, param, option)
 | `switch` | ON/OFF トグル |
 | `field-select` | fieldMetaData からのドロップダウン |
 | `portal-select` | portalMetaData からのドロップダウン（showWhen で表示制御） |
+| `select` | オプション項目から選択 |
+| `text` | テキスト入力 |
 | `number` | 数値入力 |
 | `color` | カラーピッカー + HEX テキスト入力 |
 
